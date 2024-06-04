@@ -1,22 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useVoertuigStore } from '../stores/VoertuigStore';
-
 
 const props = defineProps({
-    status: {
-        type: Number,
-        required: false
-    },
-    initMovieIdData: {
-        type: Object,
-        required: false
-    },
     movieValue: {
-
+        type: String,
     },
     movieKey: {
-
+        type: String,
+        required:true
     }
 }); 
 </script>
@@ -24,7 +14,7 @@ const props = defineProps({
 <template>
     <!-- Looping over object -->
     <li class="col-sm-12  col-lg-7 py-3 title" v-if="movieKey === 'Title'">
-        <h1>{{ movieValue }}</h1>
+        <h1>{{ props.movieValue }}</h1>
     </li>
     <li class="col-sm-12 col-md-3 py-5 poster" v-else-if="movieKey === 'Poster'"> <img :src="`${movieValue}`"
             alt="description"></li>

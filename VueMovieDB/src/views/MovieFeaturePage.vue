@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 
 //components
 import ResultComp from '../components/ResultComp.vue'

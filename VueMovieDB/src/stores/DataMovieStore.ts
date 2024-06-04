@@ -28,7 +28,7 @@ export const useMovieDataStore = defineStore("MovieDataStore", {
   //Actions are functions that can also be asynchronous which are used to update the state
   //For Mutating items within the store state, use actions
   actions: {
-    async fetchMovies(param){
+    async fetchMovies(param:string){
       const params = {
         apikey: import.meta.env.VITE_endpoint1apikey,
         movietitle: param,
@@ -49,7 +49,7 @@ export const useMovieDataStore = defineStore("MovieDataStore", {
           console.log("error", error);
         }));
     },
-    async fetchMovieId(param){
+    async fetchMovieId(param:string){
         const params = {
           apikey: import.meta.env.VITE_endpoint1apikey,
           movieId: param,

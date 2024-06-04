@@ -15,11 +15,11 @@ const movieDataStore = useMovieDataStore();
 const showMessage = ref()
 
 //destructure parts of the store
-const { reactiveMovies, plotbool} = storeToRefs(useMovieDataStore());
+const { plotbool} = storeToRefs(useMovieDataStore());
 
 
 //METHODS
-function emitMovieValue(argument) {
+function emitMovieValue(argument:object) {
     if (argument.searchRef.length >= 3) {
         showMessage.value = false
         movieDataStore.fetchMovies(argument.searchRef)
@@ -29,7 +29,7 @@ function emitMovieValue(argument) {
     }
 }
 
-function emitCheckValue(argument) {
+function emitCheckValue(argument:object) {
     plotbool.value = argument.boolRef
 }
 

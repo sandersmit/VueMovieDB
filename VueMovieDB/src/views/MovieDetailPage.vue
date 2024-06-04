@@ -1,34 +1,15 @@
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted } from 'vue';
-import { useVoertuigStore } from '../stores/VoertuigStore';
+import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import router from '../router/index';
 
 //Pinia Store
 import { useMovieDataStore } from '../stores/DataMovieStore';
-import { storeToRefs } from "pinia";
 
 //components
 import DetailComp from '../components/DetailComp.vue'
 
 const route = useRoute(); 
 const movieDataStore = useMovieDataStore();
-
-//destructure parts of the store
-const { plotbool } = storeToRefs(useMovieDataStore());
-
-
-
-const props = defineProps({
-    status: {
-    type: Number,
-    required: false
-  },
-  initMovieValue: {
-    type: Array,
-    required: false
-  }
-}); 
 
 
 //COMPUTED

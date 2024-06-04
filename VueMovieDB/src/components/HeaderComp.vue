@@ -35,7 +35,7 @@ function checkValEmit(){
 </script>
 
 <template>
-  <h1 class="themecolor">{{ title }}</h1>
+  <h1 class="themecolor">{{ props.title }}</h1>
   
   <nav class="navbar  py-4 ">
     <div class="mx-auto my-2" v-show="showMessageProp">
