@@ -16,15 +16,12 @@ export const useMovieDataStore = defineStore("MovieDataStore", {
   //Getters are synchronous functions used to retrieve data from the state
   getters: {
     getMovieData: function (state) {
-      console.log('getMovieData:',state.reactiveMovies.Search.length)
       return state.reactiveMovies.Search 
     },
     getMovieId: function (state) {
-      console.log('getMovieId:',state.reactiveMovieId)
       return state.reactiveMovieId
     },
     getPlotState: function (state) {
-      console.log('state.getPlotBool:',state.plotbool)
       return state.plotbool
     }
   },
@@ -32,7 +29,6 @@ export const useMovieDataStore = defineStore("MovieDataStore", {
   //For Mutating items within the store state, use actions
   actions: {
     async fetchMovies(param){
-    console.log(param, this.getPlotState)
       const params = {
         apikey: import.meta.env.VITE_endpoint1apikey,
         movietitle: param,
@@ -40,15 +36,12 @@ export const useMovieDataStore = defineStore("MovieDataStore", {
       };
       let url;
       url = params.plot?`https://www.omdbapi.com/?s=${params.movietitle}&plot=full&apiKey=81e8eab6`:`https://www.omdbapi.com/?s=${params.movietitle}&apiKey=81e8eab6`
-      //const url = `https://www.omdbapi.com/?s=${params.movietitle}&plot=${params.plot}&apiKey=81e8eab6`;
-      console.log(url,params.plot)
       const options = {
         method: "GET",
       };
       //fetching fetchFoodCategorie
       return (this.reactiveMovies = await fetch(url, options)
         .then(function (response) {
-         // console.log('api response: ',response.ok)
           return response.json();
         })
         .catch((error) => {
@@ -57,7 +50,6 @@ export const useMovieDataStore = defineStore("MovieDataStore", {
         }));
     },
     async fetchMovieId(param){
-      console.log('fetchMovieId',param, this.getPlotState)
         const params = {
           apikey: import.meta.env.VITE_endpoint1apikey,
           movieId: param,
@@ -65,15 +57,12 @@ export const useMovieDataStore = defineStore("MovieDataStore", {
         };
         let url;
         url = params.plot?`https://www.omdbapi.com/?i=${params.movieId}&plot=full&apiKey=81e8eab6`:`https://www.omdbapi.com/?i=${params.movieId}&apiKey=81e8eab6`
-       
-        //const url = `https://www.omdbapi.com/?i=${params.movieId}&plot=full&apiKey=81e8eab6`;
         const options = {
           method: "GET",
         };
         //fetching fetchFoodCategorie
         return (this.reactiveMovieId = await fetch(url, options)
           .then(function (response) {
-           // console.log('api response: ',response.ok)
             return response.json();
           })
           .catch((error) => {

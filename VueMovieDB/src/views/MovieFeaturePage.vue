@@ -11,13 +11,11 @@ const movieDataStore = useMovieDataStore();
 
 //COMPUTED
 const computeMovies = computed(function () {
-  console.log('computeMovies', movieDataStore.getMovieData)
   return movieDataStore.getMovieData
 })
 
 onMounted(() => {
     movieDataStore.fetchMovies('matrix', true)
-  console.log("mount fetchMovieId")
 })
 </script>
 

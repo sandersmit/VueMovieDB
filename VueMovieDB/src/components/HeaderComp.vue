@@ -19,7 +19,6 @@ const emit = defineEmits(['emit-search-value','emit-checked-value'])
 
 //METHODS
 function inputValEmit(){
-    console.log("searchfieldRef.value:",searchfieldRef.value)
     const emitObj = {
         boolRef : boolRefInput.value,
         searchRef : searchfieldRef.value
@@ -27,7 +26,6 @@ function inputValEmit(){
   emit('emit-search-value', emitObj);
 }
 function checkValEmit(){
-    console.log("searchfieldRef.value:",boolRefCheck.value)
     boolRefCheck.value =! boolRefCheck.value
     const emitObj = {
         boolRef : boolRefCheck.value,

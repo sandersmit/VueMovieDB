@@ -20,13 +20,10 @@ const { reactiveMovies, plotbool} = storeToRefs(useMovieDataStore());
 
 //METHODS
 function emitMovieValue(argument) {
-    console.log("emit argument.searchfieldRef:", argument.searchRef, argument.searchRef.length)
     if (argument.searchRef.length >= 3) {
-        console.log("fetch");
         showMessage.value = false
         movieDataStore.fetchMovies(argument.searchRef)
     } else {
-        console.log("Dont fetch", reactiveMovies);
         showMessage.value = true
         return
     }
@@ -34,20 +31,17 @@ function emitMovieValue(argument) {
 
 function emitCheckValue(argument) {
     plotbool.value = argument.boolRef
-    console.log("emit argument:", argument.boolRef, plotbool.value)
 }
 
 
 //COMPUTED
 const computeMovies = computed(function () {
-  console.log('computeMovies', movieDataStore.getMovieData)
   return movieDataStore.getMovieData;
 })
 
 onMounted(() => {
   plotbool.value = false
   movieDataStore.fetchMovies('space')
-  console.log("mount fetchMovies")
 })
 </script>
 

@@ -33,13 +33,11 @@ const props = defineProps({
 
 //COMPUTED
 const computeMovieDetail = computed(function () {
-  console.log('computeMovie id ', movieDataStore.getMovieId)
   return movieDataStore.getMovieId
 })
 
 onMounted(() => {
   movieDataStore.fetchMovieId(route.params.movieidparam)
-  console.log("mount fetchMovieId")
 })
 </script>
 
