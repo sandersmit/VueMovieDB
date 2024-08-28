@@ -1,11 +1,12 @@
 import { createApp } from 'vue'
 // Option A: Include Complete Bootstrap
+import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 import './style.css'
 import App from './App.vue'
 
 //import router - createRouter and history.. from 'vue-router' npm dependancy
-import router from './router';
+import router from './router/index';
 
 //pinia instance for data
 import { createPinia } from 'pinia'

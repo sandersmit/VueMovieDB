@@ -1,17 +1,24 @@
 import { defineStore } from "pinia"; 
 
+//TS interfaces
+import type { ReactiveMovieIntFace, MovieIdObjectType } from '../types';
+
 //as the name of the file 'FoodStore.js'
 export const useMovieDataStore = defineStore("MovieDataStore", {
   //The state is defined as a function returning the initial state
   state: function () {
     return {
+      loaderState:true,
       plotbool:false,
       reactiveMovies:{
-        Search:['No Data in Store']
+        Search:[
+          {} as ReactiveMovieIntFace
+        ]
       },
-      reactiveMovieId:[]
+      reactiveMovieId:[
+        {} as MovieIdObjectType
+      ]
     };
-   
   },
   //Getters are synchronous functions used to retrieve data from the state
   getters: {
@@ -29,13 +36,14 @@ export const useMovieDataStore = defineStore("MovieDataStore", {
   //For Mutating items within the store state, use actions
   actions: {
     async fetchMovies(param:string){
+      console.log(import.meta.env.VITE_env_message)
       const params = {
-        apikey: import.meta.env.VITE_endpoint1apikey,
+        apikey: import.meta.env.VITE_omdb_apikey,
         movietitle: param,
         plot: this.getPlotState
       };
-      let url;
-      url = params.plot?`https://www.omdbapi.com/?s=${params.movietitle}&plot=full&apiKey=81e8eab6`:`https://www.omdbapi.com/?s=${params.movietitle}&apiKey=81e8eab6`
+      let url; 
+      url = params.plot?`https://www.omdbapi.com/?s=${params.movietitle}&plot=full&apiKey=${params.apikey}`:`https://www.omdbapi.com/?s=${params.movietitle}&apiKey=${params.apikey}`
       const options = {
         method: "GET",
       };
@@ -49,7 +57,8 @@ export const useMovieDataStore = defineStore("MovieDataStore", {
           console.log("error", error);
         }));
     },
-    async fetchMovieId(param:string){
+    async fetchMovieId(param:string | string[]){  
+      this.reactiveMovieId.length = 0
         const params = {
           apikey: import.meta.env.VITE_endpoint1apikey,
           movieId: param,
@@ -61,9 +70,10 @@ export const useMovieDataStore = defineStore("MovieDataStore", {
           method: "GET",
         };
         //fetching fetchFoodCategorie
-        return (this.reactiveMovieId = await fetch(url, options)
-          .then(function (response) {
-            return response.json();
+        return (
+          this.reactiveMovieId = await fetch(url, options)
+          .then(function (response) { 
+            return response.json()  
           })
           .catch((error) => {
             //request failed

@@ -9,17 +9,17 @@
 
 <style scoped lang="scss">
 a {
-
+  color: white;
   &.active,
   &.router-link-exact-active {
     color: #35eb9a
   }
 
   &.nav-link {
+    
+    font-size: 2rem;
     padding: 1rem;
     display: block;
-
-    //border-bottom: solid 1px #484848;
     &:hover {
       color: #f2f2f2
     }

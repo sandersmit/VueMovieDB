@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, defineProps } from 'vue'
 
+//TS interfaces
+import type { EmitedMovie } from '../types';
+
 const props = defineProps({
   title: {
     type: String,
@@ -8,7 +11,7 @@ const props = defineProps({
   },
   showMessageProp:{
    type: Boolean,
-   required: true
+   required: false
   }
 }); 
 const searchfieldRef = ref('')
@@ -22,11 +25,13 @@ function inputValEmit(){
     const emitObj = {
         boolRef : boolRefInput.value,
         searchRef : searchfieldRef.value
-    }
+    } as EmitedMovie
   emit('emit-search-value', emitObj);
 }
 function checkValEmit(){
-    boolRefCheck.value =! boolRefCheck.value
+  boolRefCheck.value ? boolRefCheck.value = false : boolRefCheck.value = true 
+    // boolRefCheck.value =! boolRefCheck.value
+    console.log(boolRefCheck.value)
     const emitObj = {
         boolRef : boolRefCheck.value,
     }
@@ -35,8 +40,7 @@ function checkValEmit(){
 </script>
 
 <template>
-  <h1 class="themecolor">{{ props.title }}</h1>
-  
+  <h1 class="display-1">{{ props.title }}</h1>
   <nav class="navbar  py-4 ">
     <div class="mx-auto my-2" v-show="showMessageProp">
       Minimal 3 characters search query
@@ -61,6 +65,10 @@ function checkValEmit(){
 </template>
 
 <style scoped>
+h1{
+  color:white
+  
+}
 form{
   flex-direction: column;
 }

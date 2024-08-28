@@ -6,6 +6,9 @@ import { ref, computed, onMounted } from 'vue';
 import HeaderComp from '../components/HeaderComp.vue'
 import ResultComp from '../components/ResultComp.vue'
 
+//TS interfaces
+import type { EmitedMovie } from '../types';
+
 //Pinia Store
 import { useMovieDataStore } from '../stores/DataMovieStore';
 import { storeToRefs } from "pinia";
@@ -19,17 +22,16 @@ const { plotbool} = storeToRefs(useMovieDataStore());
 
 
 //METHODS
-function emitMovieValue(argument:object) {
+function emitMovieValue(argument:EmitedMovie) {
     if (argument.searchRef.length >= 3) {
         showMessage.value = false
         movieDataStore.fetchMovies(argument.searchRef)
     } else {
         showMessage.value = true
-        return
     }
 }
 
-function emitCheckValue(argument:object) {
+function emitCheckValue(argument:EmitedMovie) {
     plotbool.value = argument.boolRef
 }
 

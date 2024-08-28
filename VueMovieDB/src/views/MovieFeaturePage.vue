@@ -15,7 +15,7 @@ const computeMovies = computed(function () {
 })
 
 onMounted(() => {
-    movieDataStore.fetchMovies('matrix', true)
+    movieDataStore.fetchMovies('matrix')
 })
 </script>
 
@@ -34,6 +34,3 @@ onMounted(() => {
 
 </template>
 
-<style scoped>
-
-</style>
